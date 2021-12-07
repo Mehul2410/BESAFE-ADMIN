@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import BasePage from "../layout/BasePage";
 import BaseLayout from "../layout/BaseLayout";
 // import Login from "../components/login/Login";
-import { parseCookies } from "nookies";
 import Verification from "../components/verification/Verification";
 
 const index = ({ adminLogin }) => {
@@ -19,9 +18,9 @@ const index = ({ adminLogin }) => {
 };
 
 export const getServerSideProps = async (ctx) => {
-  const { adminLogin } = parseCookies(ctx);
-
-  if (!adminLogin) {
+  const { req, res } = ctx;
+  const { cookies } = req;
+  if (!cookies.adminLogin) {
     return {
       redirect: {
         destination: "/login",
