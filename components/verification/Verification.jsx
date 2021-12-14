@@ -29,9 +29,10 @@ const Verification = () => {
 
   const [text, setText] = useState(people);
   const [edit, setEdit] = useState({
-    id: 0,
+    id: null,
     state: false,
   });
+  console.log(edit);
 
   return (
     <div className="flex flex-col">
@@ -87,105 +88,111 @@ const Verification = () => {
                   </tr>
                 </thead>
                 <tbody className="bg-dark divide-y divide-gray-200">
-                  {text.map((person) => (
-                    <tr key={person.id}>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="flex items-center">
-                          <div className="flex-shrink-0 h-10 w-10">
-                            <img
-                              className="h-10 w-10 rounded-full"
-                              src={person.image}
-                              alt=""
-                            />
-                          </div>
-                          <div className="ml-4">
-                            {/* <div className="text-sm font-medium text-light">
-                              {person.name}
-                            </div> */}
-                            <div className="text-sm font-medium text-light">
-                              <input
-                                type="text"
-                                value={person.name}
-                                className="bg-dark"
-                                onChange={(e) => {
-                                  person.name = e.target.value;
-                                  setText([...text]);
-                                }}
-                                disabled={edit.state ? false : true}
-                              ></input>
+                  {text.map((person) => {
+                    return (
+                      <tr key={person.id}>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <div className="flex items-center">
+                            <div className="flex-shrink-0 h-10 w-10">
+                              <img
+                                className="h-10 w-10 rounded-full"
+                                src={person.image}
+                                alt=""
+                              />
                             </div>
-                            {/* <div className="text-sm text-light">
+                            <div className="ml-4">
+                              {/* <div className="text-sm font-medium text-light">
+                                {person.name}
+                              </div> */}
+                              <div className="text-sm font-medium text-light">
+                                <input
+                                  type="text"
+                                  value={person.name}
+                                  className="bg-dark"
+                                  onChange={(e) => {
+                                    person.name = e.target.value;
+                                    setText([...text]);
+                                  }}
+                                  disabled={
+                                    person.id === edit.id && edit.state === true
+                                      ? false
+                                      : true
+                                  }
+                                ></input>
+                              </div>
+                              {/* <div className="text-sm text-light">
                               {person.email}
                             </div> */}
-                            <div className="text-sm text-light">
-                              <input
-                                type={text}
-                                value={person.email}
-                                className="bg-dark"
-                                onChange={(e) => {
-                                  person.email = e.target.value;
-                                  setText([...text]);
-                                }}
-                                disabled={edit ? false : true}
-                              ></input>
+                              <div className="text-sm text-light">
+                                <input
+                                  type={text}
+                                  value={person.email}
+                                  className="bg-dark"
+                                  onChange={(e) => {
+                                    person.email = e.target.value;
+                                    setText([...text]);
+                                  }}
+                                  disabled={edit ? false : true}
+                                ></input>
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap  ">
-                        <div className="text-base  text-light text-center px-3 py-2  rounded-xl bg-darkest">
-                          {person.details}
-                        </div>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="text-sm text-light text-center ">
-                          {person.post}
-                        </div>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="text-sm text-light text-center">
-                          {person.area}
-                        </div>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="text-sm text-light text-center">
-                          {person.verify}
-                        </div>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <span className="text-sm flex text-white font-medium  px-1 py-1 justify-center rounded-full bg-darkest">
-                          Active
-                        </span>
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                        <div class="space-x-2">
-                          <button
-                            className="bg-light text-sm rounded-full p-3"
-                            onClick={() =>
-                              setEdit({ id: person.id, state: true })
-                            }
-                          >
-                            <img
-                              src="/edit.svg"
-                              alt="edit"
-                              className="h-5 w-5 bg-light "
-                            />
-                          </button>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap  ">
+                          <div className="text-base  text-light text-center px-3 py-2  rounded-xl bg-darkest">
+                            {person.details}
+                          </div>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <div className="text-sm text-light text-center ">
+                            {person.post}
+                          </div>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <div className="text-sm text-light text-center">
+                            {person.area}
+                          </div>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <div className="text-sm text-light text-center">
+                            {person.verify}
+                          </div>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <span className="text-sm flex text-white font-medium  px-1 py-1 justify-center rounded-full bg-darkest">
+                            Active
+                          </span>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                          <div className="space-x-2">
+                            <button
+                              className="bg-light text-sm rounded-full p-3"
+                              onClick={() =>
+                                setEdit({ id: person.id, state: true })
+                              }
+                            >
+                              <img
+                                src="/edit.svg"
+                                alt="edit"
+                                className="h-5 w-5 bg-light "
+                              />
+                            </button>
 
-                          <button
-                            className="bg-light rounded-full p-3"
-                            onClick={() => setEdit(false)}
-                          >
-                            <img
-                              src="/save.svg"
-                              alt="save"
-                              className="h-5 w-5 bg-light "
-                            />
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
+                            <button
+                              className="bg-light rounded-full p-3"
+                              onClick={() => setEdit(false)}
+                            >
+                              <img
+                                src="/save.svg"
+                                alt="save"
+                                className="h-5 w-5 bg-light "
+                              />
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    );
+                  })}
                 </tbody>
               </table>
             </div>

@@ -29,8 +29,6 @@ const Login = () => {
       console.log(error);
     }
   }
-
-  console.log(loginDetail);
   return (
     <div className="flex justify-center item-center mt-36">
       <form
