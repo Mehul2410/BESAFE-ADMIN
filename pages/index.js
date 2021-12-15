@@ -4,11 +4,11 @@ import BaseLayout from "../layout/BaseLayout";
 // import Login from "../components/login/Login";
 import Verification from "../components/verification/Verification";
 
-const index = ({ adminLogin }) => {
-  console.log(adminLogin);
+const index = ({ authstatus }) => {
+  console.log(authstatus);
   return (
     <div>
-      <BaseLayout>
+      <BaseLayout authstatus={authstatus}>
         <BasePage>
           <Verification />
         </BasePage>
@@ -28,7 +28,7 @@ export const getServerSideProps = async (ctx) => {
       },
     };
   }
-  return { props: {} };
+  return { props: { authstatus: true } };
 };
 
 export default index;
