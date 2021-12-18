@@ -30,9 +30,9 @@ const Login = () => {
     }
   }
   return (
-    <div className="flex justify-center item-center mt-36">
+    <div className="flex justify-center item-center my-36">
       <form
-        className="bg-darker flex flex-col py-10  w-80 h-64 space-y-6 rounded-xl drop-shadow-xl items-center"
+        className="bg-darker flex flex-col py-10 w-80 h-64  space-y-6 rounded-xl drop-shadow-xl items-center"
         onSubmit={(e) => e.preventDefault()}
       >
         <input
