@@ -5,13 +5,11 @@ import BasePage from "../layout/BasePage";
 
 const login = () => {
   return (
-    <div>
       <BaseLayout>
         <BasePage>
           <Login />
         </BasePage>
       </BaseLayout>
-    </div>
   );
 };
 
