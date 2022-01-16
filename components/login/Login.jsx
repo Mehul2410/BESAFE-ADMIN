@@ -11,8 +11,8 @@ const Login = () => {
 
   async function loginFun() {
     try {
-      const res = await fetch("http://localhost:8000/admin-sign-in", {
-        method: "post",
+      const res = await fetch("https://besaferestapi.herokuapp.com/api/admin", {
+        method: "POST",
         credentials: "include",
         headers: {
           "Content-type": "application/json",
