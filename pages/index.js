@@ -20,7 +20,7 @@ const index = ({ authstatus }) => {
 export const getServerSideProps = async (ctx) => {
   const { req, res } = ctx;
   const { cookies } = req;
-  if (!cookies.adminLogin) {
+  if (!cookies.access_token) {
     return {
       redirect: {
         destination: "/login",
