@@ -2,8 +2,8 @@ module.exports = {
   async rewrites() {
     return [
       {
-        source: "/:path*",
-        destination: "https://besaferestapi.herokuapp.com/:path*",
+        source: "/api/:path*",
+        destination: "https://besaferestapi.herokuapp.com/api/:path*",
       },
     ];
   },
