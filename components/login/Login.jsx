@@ -24,7 +24,6 @@ const Login = () => {
 
       const res = await fetch("https://besaferestapi.herokuapp.com/api/admin", {
         method: "POST",
-        mode: "no-cors",
         credentials: "include",
         headers: headers,
         body: JSON.stringify(loginDetail),
