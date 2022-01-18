@@ -13,7 +13,7 @@ const Login = () => {
     try {
       const res = await fetch("https://besaferestapi.herokuapp.com/api/admin", {
         method: "POST",
-        credentials: "include",
+        // credentials: "include",
         headers: {
           "Content-type": "application/json",
           Accept: "application/json",
@@ -22,7 +22,15 @@ const Login = () => {
         body: JSON.stringify(loginDetail),
       });
       const result = await res.json();
-      if (result.success === true) {
+      const x = await fetch("/api/login", {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(result),
+      });
+      const r = await x.json();
+      if (r.success === true) {
         router.push("/");
       }
     } catch (error) {

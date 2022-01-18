@@ -5,12 +5,26 @@ import BasePage from "../layout/BasePage";
 
 const login = () => {
   return (
-      <BaseLayout>
-        <BasePage>
-          <Login />
-        </BasePage>
-      </BaseLayout>
+    <BaseLayout>
+      <BasePage>
+        <Login />
+      </BasePage>
+    </BaseLayout>
   );
+};
+
+export const getServerSideProps = async (ctx) => {
+  const { req, res } = ctx;
+  const { cookies } = req;
+  if (cookies.access_token) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
+  return { props: { authstatus: true } };
 };
 
 export default login;
