@@ -21,26 +21,23 @@
 import cookie from "cookie";
 
 export default (req, res) => {
-  res.setHeader(
-    "Set-Cookie",
+  res.setHeader("Set-Cookie", [
     cookie.serialize("access_token", req.body.access_token, {
       maxAge: 1000 * 60 * 60 * 24 * 30,
       httpOnly: true,
       secure: true,
       sameSite: "None",
       path: "/",
-    })
-  );
-  // res.setHeader(
-  //   "Set-Cookie",
-  //   cookie.serialize("refresh_token", req.body.refresh_token, {
-  //     maxAge: 1000 * 60 * 60 * 24 * 30,
-  //     httpOnly: true,
-  //     secure: true,
-  //     sameSite: "None",
-  //     path: "/",
-  //   })
-  // );
+    }),
+    cookie.serialize("refresh_token", req.body.refresh_token, {
+      maxAge: 1000 * 60 * 60 * 24 * 30,
+      httpOnly: true,
+      secure: true,
+      sameSite: "None",
+      path: "/",
+    }),
+  ]);
+
   res.statusCode = 200;
   res.json({ success: true });
 };
