@@ -22,7 +22,6 @@ const Login = () => {
         body: JSON.stringify(loginDetail),
       });
       const result = await res.json();
-      console.log(result);
       if (result.success === true) {
         router.push("/");
       }
