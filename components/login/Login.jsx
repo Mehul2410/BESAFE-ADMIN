@@ -11,21 +11,14 @@ const Login = () => {
 
   async function loginFun() {
     try {
-      let headers = new Headers();
-
-      headers.append("Content-Type", "application/json");
-      headers.append("Accept", "application/json");
-
-      headers.append(
-        "Access-Control-Allow-Origin",
-        "https://besaferestapi.herokuapp.com/"
-      );
-      headers.append("Access-Control-Allow-Credentials", "true");
-
       const res = await fetch("https://besaferestapi.herokuapp.com/api/admin", {
         method: "POST",
         credentials: "include",
-        headers: headers,
+        headers: {
+          "Content-type": "application/json",
+          Accept: "application/json",
+        },
+        // headers: headers,
         body: JSON.stringify(loginDetail),
       });
       const result = await res.json();
