@@ -1,46 +1,8 @@
-import React from "react";
-import { useState } from "react";
-
-const Verification = ({ police }) => {
-  console.log(police);
-  const [text, setText] = useState(police);
-  const [edit, setEdit] = useState({
-    id: null,
-    state: false,
-  });
-  const [view, setView] = useState({
-    url: "",
-    state: false,
-  });
-  const [undo, setUndo] = useState("");
-  console.log(undo);
-
-  const [userStatus, setUserStatus] = useState("");
-
-  // function handleundo(person) {
-  //   const old = person;
-  //   setUndo(old);
-  // }
-  return (
-    <div className="flex flex-col">
-      <span className="flex text-light text-4xl mx-auto my-5">
-        Verification Panal
-      </span>
-      <div className="flex flex-col relative ">
-        {view.state && (
-          <div className="absolute flex bg-light items-center rounded-lg left-44 p-7 z-30 ">
-            <img className="h-5/6 rounded-lg" src={view.url} />
-            <img
-              className=" absolute h-5 w-5 top-2 right-2  cursor-pointer"
-              onClick={() => setView({ state: true })}
-              src="./close.svg"
-            />
-          </div>
-        )}
+<div className="flex flex-col">
         <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
             <div className="shadow overflow-hidden border-2 rounded-lg border-opacity-20 border-white sm:rounded-lg">
-              <table className="min-w-full divide-y divide-white divide-opacity-60 ">
+              <table className="min-w-full divide-y divide-white divide-opacity-60">
                 <thead className="bg-darkest ">
                   <tr>
                     <th
@@ -85,7 +47,7 @@ const Verification = ({ police }) => {
                   </tr>
                 </thead>
                 <tbody className="bg-dark divide-y divide-gray-200">
-                  {police.map((person) => {
+                  {text.map((person) => {
                     return (
                       <tr key={person.id}>
                         <td className="px-6 py-4 whitespace-nowrap">
@@ -93,9 +55,7 @@ const Verification = ({ police }) => {
                             <div className="flex-shrink-0 h-10 w-10">
                               <img
                                 className="h-10 w-10 rounded-full"
-                                src={
-                                  person.avatar ? person.avatar : "./police.svg"
-                                }
+                                src={person.image}
                                 alt=""
                               />
                             </div>
@@ -145,18 +105,7 @@ const Verification = ({ police }) => {
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap  ">
                           <div className="text-base  text-light text-center px-3 py-2  rounded-xl bg-darkest">
-                            <button
-                              onClick={() => {
-                                setView({
-                                  state: true,
-                                  url:
-                                    person.userDetails &&
-                                    person.userDetails.verificationPaper,
-                                });
-                              }}
-                            >
-                              View
-                            </button>
+                            {person.details}
                           </div>
                         </td>
                         <td className="px-4 py-4 whitespace-nowrap">
@@ -166,10 +115,7 @@ const Verification = ({ police }) => {
                           <div className="text-sm text-light text-center ">
                             <input
                               type="text"
-                              value={
-                                person.userDetails.policePost &&
-                                person.userDetails.policePost
-                              }
+                              value={person.post}
                               className="bg-dark text-sm outline-none border-0 text-center p-0"
                               onChange={(e) => {
                                 person.post = e.target.value;
@@ -190,10 +136,7 @@ const Verification = ({ police }) => {
                           <div className="text-sm text-light text-center">
                             <input
                               type="text"
-                              value={
-                                person.userDetails.postingArea &&
-                                person.userDetails.postingArea
-                              }
+                              value={person.area}
                               className="bg-dark text-sm outline-none border-0 text-center p-0"
                               onChange={(e) => {
                                 person.area = e.target.value;
@@ -209,7 +152,7 @@ const Verification = ({ police }) => {
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">
                           <div className="text-sm text-light text-center">
-                            {person.active}
+                            {person.verify}
                           </div>
                         </td>
                         <td className=" py-4 whitespace-nowrap">
@@ -311,8 +254,34 @@ const Verification = ({ police }) => {
           </div>
         </div>
       </div>
-    </div>
-  );
-};
 
-export default Verification;
+
+
+
+
+      // const people = [
+//   {
+//     id: 0,
+//     name: "Jane Cooper",
+//     details: "View",
+//     post: "Sr. Inspector",
+//     area: "location",
+//     verify: "Verified",
+//     status: "inactive",
+//     email: "jane.cooper@example.com",
+//     image:
+//       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60",
+//   },
+//   {
+//     id: 1,
+//     name: "Cooper",
+//     details: "View",
+//     post: "Sr. Inspector",
+//     area: "location",
+//     verify: "Verified",
+//     status: "inactive",
+//     email: "jane.cooper@example.com",
+//     image:
+//       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60",
+//   },
+// ];

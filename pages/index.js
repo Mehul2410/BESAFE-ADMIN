@@ -6,12 +6,11 @@ import Verification from "../components/verification/Verification";
 import { data } from "autoprefixer";
 
 const index = ({ authstatus, police }) => {
-  console.log(authstatus, police);
   return (
     <div>
       <BaseLayout authstatus={authstatus}>
         <BasePage>
-          <Verification />
+          <Verification police={police} />
         </BasePage>
       </BaseLayout>
     </div>
