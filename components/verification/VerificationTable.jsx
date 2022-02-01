@@ -123,9 +123,14 @@ function PoliceRows({ person, setView }) {
           ></input>
         </div>
       </td>
-      <ActiveInactive edit={edit} />
       <td className="px-6 py-4 whitespace-nowrap">
-        <div className="text-sm text-light text-center">{person.active}</div>
+        <div className="text-sm text-light text-center"></div>
+      </td>
+
+      <td className=" py-4 whitespace-nowrap">
+        <div className="text-sm text-light text-center">
+          <ActiveInactive edit={edit} />
+        </div>
       </td>
       <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
         <div className="space-x-2">
