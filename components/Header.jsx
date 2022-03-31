@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 const Header = ({ authstatus }) => {
   const [auth, setAuth] = useState(authstatus ? authstatus : false);
+
   return (
     <div>
       <div className="bg-dark flex h-20">
