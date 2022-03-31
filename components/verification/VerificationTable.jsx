@@ -24,7 +24,7 @@ function PoliceRows({ person, setView }) {
   const [edit, setEdit] = React.useState(false);
   const [undo, setUndo] = React.useState("");
 
-  return (
+  return person.userDetails ? (
     <tr key={person.id}>
       <td className="px-6 py-4 whitespace-nowrap">
         <div className="flex items-center">
@@ -77,7 +77,7 @@ function PoliceRows({ person, setView }) {
             onClick={() => {
               setView({
                 state: true,
-                url: person.userDetails && person.userDetails.verificationPaper,
+                url: person.userDetails?.verificationPaper,
               });
             }}
           >
@@ -92,9 +92,7 @@ function PoliceRows({ person, setView }) {
         <div className="text-sm text-light text-center ">
           <input
             type="text"
-            value={
-              person.userDetails.policePost && person.userDetails.policePost
-            }
+            value={person.userDetails?.policePost}
             className="bg-dark text-sm outline-none border-0 text-center p-0"
             onChange={(e) => {
               person.post = e.target.value;
@@ -111,9 +109,7 @@ function PoliceRows({ person, setView }) {
         <div className="text-sm text-light text-center">
           <input
             type="text"
-            value={
-              person.userDetails.postingArea && person.userDetails.postingArea
-            }
+            value={person.userDetails?.postingArea}
             className="bg-dark text-sm outline-none border-0 text-center p-0"
             onChange={(e) => {
               person.area = e.target.value;
@@ -162,6 +158,8 @@ function PoliceRows({ person, setView }) {
         </div>
       </td>
     </tr>
+  ) : (
+    []
   );
 }
 
