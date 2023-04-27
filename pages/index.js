@@ -6,42 +6,45 @@ import Verification from "../components/verification/Verification";
 import { data } from "autoprefixer";
 
 const index = ({ authstatus, police }) => {
-  return (
-    <div>
-      <BaseLayout authstatus={authstatus}>
-        <BasePage>
-          <Verification police={police} />
-        </BasePage>
-      </BaseLayout>
-    </div>
-  );
+	return (
+		<div>
+			<BaseLayout authstatus={authstatus}>
+				<BasePage>
+					<Verification police={police} />
+				</BasePage>
+			</BaseLayout>
+		</div>
+	);
 };
 
 export const getServerSideProps = async (ctx) => {
-  const { req, res } = ctx;
-  const { cookies } = req;
-  if (!cookies.access_token) {
-    return {
-      redirect: {
-        destination: "/login",
-        permanent: false,
-      },
-    };
-  }
-  let police;
-  let data;
-  police = await fetch("https://besaferestapi.herokuapp.com/api/getAllPolice", {
-    method: "GET",
-    headers: {
-      Accept: "application/json",
-      // authorization: `Bearer ${cookies.access_token}`,
-    },
-  });
-  data = await police.json();
-  if (data.success) {
-    return { props: { authstatus: true, police: data.user } };
-  }
-  return { props: { authstatus: true, police: data.user } };
+	const { req, res } = ctx;
+	const { cookies } = req;
+	if (!cookies.access_token) {
+		return {
+			redirect: {
+				destination: "/login",
+				permanent: false,
+			},
+		};
+	}
+	let police;
+	let data;
+	police = await fetch(
+		"https://besafebackend-production-1132.up.railway.app/api/getAllPolice",
+		{
+			method: "GET",
+			headers: {
+				Accept: "application/json",
+				// authorization: `Bearer ${cookies.access_token}`,
+			},
+		}
+	);
+	data = await police.json();
+	if (data.success) {
+		return { props: { authstatus: true, police: data.user } };
+	}
+	return { props: { authstatus: true, police: data.user } };
 };
 
 export default index;
@@ -50,7 +53,7 @@ export default index;
 // let data;
 // try {
 //   police = await fetch(
-//     "https://besaferestapi.herokuapp.com/api/getAllPolice",
+//     "https://besafebackend-production-1132.up.railway.app/api/getAllPolice",
 //     {
 //       method: "GET",
 //       headers: {
@@ -66,7 +69,7 @@ export default index;
 //   }
 //   try {
 //     const refresh = await fetch(
-//       "https://besaferestapi.herokuapp.com/api/refresh",
+//       "https://besafebackend-production-1132.up.railway.app/api/refresh",
 //       {
 //         method: "POST",
 //         headers: {
@@ -88,7 +91,7 @@ export default index;
 //       });
 
 //       police = await fetch(
-//         "https://besaferestapi.herokuapp.com/api/getAllPolice",
+//         "https://besafebackend-production-1132.up.railway.app/api/getAllPolice",
 //         {
 //           method: "GET",
 //           headers: {
